@@ -22,6 +22,10 @@ REST_IMPROVE = 0.01                 # resting order sits 1c better than the pric
 REST_MAX_DAYS = 5                   # cancel an unfilled resting order after this many trading days
 MEETINGS_AHEAD = 3                  # how many upcoming meetings to snapshot and evaluate
 
+# --- Dashboard (display only) ---------------------------------------------------------------
+START_CAPITAL = 10_000              # notional account the dashboard shows P&L against (~1 unit, see capital notes)
+INTRADAY_MARKS = True               # mark open positions on every weekday Actions run (data/intraday/)
+
 # --- Schedule (America/New_York) ------------------------------------------------------------
 SNAP_WINDOW = ("14:50", "15:45")    # Kalshi snapshot window around the 3pm ET reference time
 EOD_AFTER = "17:30"                 # CME settlements and EFFR are pulled after this time

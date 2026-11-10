@@ -6,7 +6,8 @@ auto (what GitHub Actions calls every 15 minutes on weekdays):
   - on Saturdays: write the weekly report
 snapshot: full order book for every contract on the next few Fed meetings, timestamped.
 eod:      pull EFFR and ZQ settlements, apply the frozen rules to today's snapshot, open paper
-          positions, advance resting orders, settle finished positions.
+          positions, advance resting orders, settle finished positions, write the equity mark.
+mark:     intraday mark of open positions for the dashboard (auto runs it on every weekday call).
 """
 import csv
 import datetime as dt
@@ -18,6 +19,7 @@ from zoneinfo import ZoneInfo
 from . import config as C
 from . import data_sources as S
 from .broker import open_position, settle, update_resting, zq_final
+from .marks import equity_point, mark_position, upsert_point, yes_mid
 from .strategy import evaluate, zq_month_for
 
 ET = ZoneInfo("America/New_York")
@@ -150,9 +152,57 @@ def eod(now):
             F = zq_final(p["zq_month"], effr)
             if F is not None and all(v in ("yes", "no") for v in results.values()):
                 settle(p, results, F)
+                p["settled_on"] = today.isoformat()
+
+    # mark open positions for the dashboard (measurement only)
+    mids = {x["ticker"]: yes_mid(x["book"]) for info in snap["events"].values() for x in info["ladder"]}
+    last = _load(_path("last_quotes.json"), {})
+    for p in positions:
+        if p["status"] != "open":
+            continue
+        pm = {}
+        for lg in p["legs"]:
+            t = lg["ticker"]
+            if mids.get(t) is not None:
+                pm[t] = mids[t]
+            else:                                    # meeting passed: resolved value, else last mid
+                res = (S.kalshi_market(t) or {}).get("result")
+                pm[t] = 1.0 if res == "yes" else 0.0 if res == "no" else last.get(t, {}).get("mid")
+        y, m = map(int, p["zq_month"].split("-"))
+        zpx = zq_cache.get((y, m), S.zq_settlement(y, m, today))[0]
+        p["mark"] = {"date": today.isoformat(), "zq_px": zpx, "mids": pm, "pnl": mark_position(p, pm, zpx)}
+    eq = _load(_path("equity.json"), {"start_capital": C.START_CAPITAL, "points": []})
+    eq["start_capital"], eq["updated"] = C.START_CAPITAL, now.isoformat()
+    eq["points"] = upsert_point(eq["points"], equity_point(positions, today.isoformat()))
+    _save(_path("equity.json"), eq)
 
     _save(POS, positions)
     _save(_path("daily", f"{today}.json"), evals)
+    return True
+
+
+# --- intraday mark ------------------------------------------------------------------------
+def mark(now):
+    """Mark open positions at live Kalshi mids (ZQ held at its last settlement)."""
+    positions = _load(POS, [])
+    if not any(p["status"] == "open" for p in positions):
+        return False
+    marked = []
+    for p in positions:
+        if p["status"] != "open":
+            marked.append(p)
+            continue
+        pm = dict((p.get("mark") or {}).get("mids") or {})
+        for lg in p["legs"]:
+            m = yes_mid(S.kalshi_book(lg["ticker"]))
+            if m is not None:
+                pm[lg["ticker"]] = m
+        zpx = (p.get("mark") or {}).get("zq_px")
+        marked.append({**p, "mark": {"pnl": mark_position(p, pm, zpx)}})
+    path = _path("intraday", f"{now.date()}.json")
+    day = _load(path, {"date": now.date().isoformat(), "points": []})
+    day["points"] = upsert_point(day["points"], equity_point(marked, now.replace(second=0, microsecond=0).isoformat()))
+    _save(path, day)
     return True
 
 
@@ -172,14 +222,20 @@ def main(mode="auto"):
         return eod(now)
     if mode == "report":
         return report(now)
+    if mode == "mark":
+        return mark(now)
     hm = now.strftime("%H:%M")
     if now.weekday() == 5:
         return False if os.path.exists(os.path.join("reports", f"weekly_{now.date()}.md")) else report(now)
     if now.weekday() < 5:
+        acted = False
         if C.SNAP_WINDOW[0] <= hm <= C.SNAP_WINDOW[1] and not done("snapshots"):
-            return snapshot(now)
-        if hm >= C.EOD_AFTER and done("snapshots") and not done("daily"):
-            return eod(now)
+            acted = snapshot(now)
+        elif hm >= C.EOD_AFTER and done("snapshots") and not done("daily"):
+            acted = eod(now)
+        if C.INTRADAY_MARKS and "09:30" <= hm <= "18:00":
+            mark(now)
+        return acted
     return False
 
 

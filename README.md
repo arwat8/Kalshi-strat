@@ -51,3 +51,9 @@ ZQ always fills at the day's settlement ± 1 tick.
 - Resting-order fills ignore queue position, so treat `rest` P&L as optimistic.
 - Rules are frozen as of 2026-11-03. The "next meeting only" flag is recorded for analysis only and
   is not a trading rule.
+
+## Dashboard
+
+`dashboard/` is a mobile PWA (Vite + React + TS) that reads `data/` and shows the equity curve, positions and today's scan. Deploy steps are in [dashboard/README.md](dashboard/README.md). Use Vercel with a read-only token for a private repo.
+
+The paper trader also writes `data/equity.json` (daily marks) and `data/intraday/` (15-minute marks while a position is open) for the dashboard. These are measurement only.
