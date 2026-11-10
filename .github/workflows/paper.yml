@@ -1,0 +1,44 @@
+name: paper-trader
+
+on:
+  schedule:
+    # Every 15 minutes, 18:00-23:45 UTC on weekdays (covers 2:50-3:45pm ET and the 5:30pm ET
+    # end-of-day run in both EST and EDT). The script decides what, if anything, to do.
+    - cron: "*/15 18-23 * * 1-5"
+    # Weekly report, Saturday 14:00 UTC
+    - cron: "0 14 * * 6"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "auto | snapshot | eod | report"
+        default: "auto"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: paper-trader
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run paper trader
+        run: python -m paper.run "${{ github.event.inputs.mode || 'auto' }}"
+      - name: Commit new data
+        run: |
+          git config user.name "paper-trader-bot"
+          git config user.email "paper-trader-bot@users.noreply.github.com"
+          git add data reports 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "nothing to commit"
+          else
+            git commit -m "paper: $(TZ=America/New_York date +'%Y-%m-%d %H:%M ET')"
+            git push
+          fi
