@@ -1,16 +1,20 @@
 name: paper-trader
 
 on:
+  # PRIMARY trigger: an external scheduler (cron-job.org) calls this workflow's "Run workflow"
+  # API (workflow_dispatch, mode=auto) at ~2:50pm and ~5:45pm ET on weekdays. GitHub's own
+  # schedule below is only a BACKUP: it is best-effort and can run hours late or not at all.
+  # The script decides what, if anything, to do, and skips work already done today.
   schedule:
     # Every 15 minutes, 18:00-23:45 UTC on weekdays (covers 2:50-3:45pm ET and the 5:30pm ET
-    # end-of-day run in both EST and EDT). The script decides what, if anything, to do.
+    # end-of-day run in both EST and EDT).
     - cron: "*/15 18-23 * * 1-5"
     # Weekly report, Saturday 14:00 UTC
     - cron: "0 14 * * 6"
   workflow_dispatch:
     inputs:
       mode:
-        description: "auto | snapshot | eod | report"
+        description: "auto | snapshot | eod | report | mark"
         default: "auto"
 
 permissions:
@@ -23,7 +27,7 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 35          # the snapshot may wait up to ~20 min for 15:00 ET
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -40,5 +44,6 @@ jobs:
             echo "nothing to commit"
           else
             git commit -m "paper: $(TZ=America/New_York date +'%Y-%m-%d %H:%M ET')"
+            git pull --rebase --autostash || true
             git push
           fi

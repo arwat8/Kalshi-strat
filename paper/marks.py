@@ -28,24 +28,26 @@ def mark_position(pos, mids, zq_now):
     held at its entry price (zero mark). zq_now: latest ZQ price, or None to hold ZQ at entry.
     """
     N, d = pos["N"], pos["direction"]
-    per_bp = C.DOLLARS_PER_BP * pos["wc"]
     out = {}
     for method in METHODS:
         f = pos["fills"][method]
-        if f["status"] != "filled":
+        if f["status"] not in ("filled", "partial"):
             out[method] = None
             continue
+        q = f.get("qty") or N                       # partial fills are marked on the matched quantity
+        scale = q / N
         usd = 0.0
         for lg in pos["legs"]:
             px = {"top": lg["top_px"], "walk": lg["walk_px"], "rest": lg["rest_limit"]}[method]
             m = mids.get(lg["ticker"])
             val = px if m is None else (m if lg["side"] == "YES" else 1 - m)
-            fee = kalshi_fee(N, px, C.KALSHI_MAKER if method == "rest" else C.KALSHI_TAKER)
-            usd += N * (val - px - fee)
+            fee = kalshi_fee(q, px, C.KALSHI_MAKER if method == "rest" else C.KALSHI_TAKER)
+            usd += q * (val - px - fee)
         if zq_now is not None and f.get("zq_px") is not None:
             z = (zq_now - f["zq_px"]) if d == "L" else (f["zq_px"] - zq_now)
-            usd += z * 100 * C.DOLLARS_PER_BP
-        usd -= C.ZQ_FEE_USD
+            usd += scale * z * 100 * C.DOLLARS_PER_BP
+        usd -= scale * C.ZQ_FEE_USD
+        per_bp = C.DOLLARS_PER_BP * pos["wc"] * scale
         out[method] = {"usd": round(usd, 2), "bp": round(usd / per_bp, 3)}
     return out
 

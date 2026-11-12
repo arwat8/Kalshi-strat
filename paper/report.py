@@ -37,7 +37,9 @@ def write_report(now):
     L = [f"# Paper trading report, {now.date()}", "",
          f"- Days recorded: {len(days)} ({days[0] if days else '-'} to {days[-1] if days else '-'})",
          f"- Meeting-days evaluated: {len(sig)}; eligible under the rules: {len(elig)}",
-         f"- Signals (trade = True): {sum(r['trade'] == 'True' for r in sig)}", ""]
+         f"- Signals (trade = True): {sum(r['trade'] == 'True' for r in sig)}",
+         f"- Signals blocked by the data-quality gate (record only): {sum(r.get('trade_if_allowed') == 'True' for r in sig)}",
+         f"- Meeting-days recorded as record-only: {sum(bool(r.get('record_only')) for r in sig)}", ""]
     L += ["## Why days were not eligible", "", "| Reason | Count |", "| --- | --- |"]
     L += [f"| {k} | {v} |" for k, v in reasons.most_common()] or ["| none | 0 |"]
     L += ["", "## Largest executable gaps seen (top of book, before costs)", "",
@@ -49,7 +51,8 @@ def write_report(now):
     tot = Counter()
     for p in pos:
         pn = p.get("pnl") or {}
-        cell = lambda m: (f"${pn[m]['usd']:,.0f} ({pn[m]['bp']:+.2f}bp)" if pn.get(m) else p["fills"][m]["status"])
+        cell = lambda m: ((f"${pn[m]['usd']:,.0f} ({pn[m]['bp']:+.2f}bp)" + (" partial" if p["fills"][m]["status"] == "partial" else ""))
+                          if pn.get(m) else p["fills"][m]["status"])
         for m in ("top", "walk", "rest"):
             if pn.get(m):
                 tot[m] += pn[m]["usd"]
@@ -63,6 +66,10 @@ def write_report(now):
     zq_src = Counter(r["note"] for r in src if r["source"].startswith("zq") and r.get("ok") == "1")
     L += [f"- ZQ source used: {dict(zq_src) or 'none yet'}"]
     L += [f"- Last failure: {fails[-1]['time']} {fails[-1]['source']}: {fails[-1]['note'][:120]}"] if fails else []
+    ro = Counter(x for r in sig for x in (r.get("record_only") or "").split(" | ") if x)
+    if ro:
+        L += ["", "## Record-only reasons (data-quality gate)", "", "| Reason | Count |", "| --- | --- |"]
+        L += [f"| {k} | {v} |" for k, v in ro.most_common()]
     os.makedirs("reports", exist_ok=True)
     with open(os.path.join("reports", f"weekly_{now.date()}.md"), "w") as f:
         f.write("\n".join(L) + "\n")
