@@ -56,7 +56,7 @@ def kalshi_book(ticker, depth=50):
 
 
 def kalshi_trades(ticker, min_ts):
-    """All trades on a contract since min_ts (unix seconds): [{'yes_price', 'count', 'ts'}...]."""
+    """All trades on a contract since min_ts (unix seconds): [{'id', 'yes_price', 'count', 'ts'}...]."""
     out, cur = [], ""
     while True:
         r = _get(f"{C.KALSHI_API}/markets/trades?ticker={ticker}&min_ts={int(min_ts)}&limit=1000"
@@ -64,7 +64,8 @@ def kalshi_trades(ticker, min_ts):
         if "_error" in r:
             return out
         for t in r.get("trades", []):
-            out.append({"yes_price": float(t.get("yes_price_dollars") or t.get("yes_price", 0)),
+            out.append({"id": t.get("trade_id"),
+                        "yes_price": float(t.get("yes_price_dollars") or t.get("yes_price", 0)),
                         "count": float(t.get("count_fp") or t.get("count", 0)),
                         "ts": t.get("created_time")})
         cur = r.get("cursor", "")

@@ -41,7 +41,7 @@ interface Spec {
   legs: { strike: number; px: number }[];
   bp: Record<Method, number | null>; // final (or current) bp per method; null = not filled
   rest: 'filled' | 'working' | 'expired';
-  walk: 'filled' | 'unfillable';
+  walk: 'filled' | 'partial' | 'unfillable';
   label: string; // ticker month code, e.g. 25OCT
 }
 
@@ -51,7 +51,7 @@ const SPECS: Spec[] = [
   { meeting: '2025-12-10', opened: '2025-11-19', settled: '2026-01-02', dir: 'H', wc: 0.677, zq_month: '2025-12', zq: 96.31, gap: 5.1, signal: 2.74,
     legs: [{ strike: 3.5, px: 0.93 }, { strike: 3.75, px: 0.31 }], bp: { top: 4.8, walk: 3.9, rest: 5.3 }, rest: 'filled', walk: 'filled', label: '25DEC' },
   { meeting: '2026-03-18', opened: '2026-02-24', settled: '2026-04-01', dir: 'L', wc: 0.452, zq_month: '2026-03', zq: 96.395, gap: 3.4, signal: 1.12,
-    legs: [{ strike: 3.5, px: 0.72 }], bp: { top: 2.6, walk: null, rest: null }, rest: 'expired', walk: 'unfillable', label: '26MAR' },
+    legs: [{ strike: 3.5, px: 0.72 }], bp: { top: 2.6, walk: 2.1, rest: null }, rest: 'expired', walk: 'partial', label: '26MAR' },
   { meeting: '2026-06-17', opened: '2026-05-27', settled: '2026-07-01', dir: 'L', wc: 0.433, zq_month: '2026-06', zq: 96.47, gap: 2.9, signal: 0.64,
     legs: [{ strike: 3.25, px: 0.95 }, { strike: 3.5, px: 0.41 }], bp: { top: -1.7, walk: -2.6, rest: null }, rest: 'expired', walk: 'filled', label: '26JUN' },
   { meeting: '2026-09-16', opened: '2026-08-25', settled: '2026-10-01', dir: 'H', wc: 0.467, zq_month: '2026-09', zq: 96.585, gap: 4.2, signal: 1.88,
@@ -78,7 +78,7 @@ function buildPosition(s: Spec): Position {
       strike: l.strike,
       side: side as 'YES' | 'NO',
       top_px: top,
-      walk_px: s.walk === 'filled' ? +(top + 0.008).toFixed(4) : null,
+      walk_px: s.walk === 'unfillable' ? null : +(top + 0.008).toFixed(4),
       walk_filled: s.walk === 'filled' ? N : Math.round(N * 0.62),
       rest_limit: +(top - 0.01).toFixed(3),
       rest_filled: s.rest === 'filled' ? N : s.rest === 'working' ? Math.round(N * 0.35) : Math.round(N * 0.2),
@@ -87,7 +87,8 @@ function buildPosition(s: Spec): Position {
   const pnl = Object.fromEntries(
     (['top', 'walk', 'rest'] as Method[]).map((m) => {
       const bp = s.bp[m];
-      return [m, bp == null ? null : { usd: +(bp * DPB * s.wc).toFixed(2), bp }];
+      const share = m === 'walk' && s.walk === 'partial' ? 0.62 : 1;
+      return [m, bp == null ? null : { usd: +(bp * DPB * s.wc * share).toFixed(2), bp }];
     }),
   ) as Record<Method, { usd: number; bp: number } | null>;
   const restDate = s.rest === 'filled' ? addDays(s.opened, 2) : null;
@@ -106,7 +107,7 @@ function buildPosition(s: Spec): Position {
     legs,
     fills: {
       top: { status: 'filled', zq_px: zqFill, date: s.opened },
-      walk: { status: s.walk, zq_px: zqFill, date: s.opened },
+      walk: { status: s.walk, qty: s.walk === 'partial' ? Math.round(N * 0.62) : s.walk === 'filled' ? N : 0, zq_px: zqFill, date: s.opened },
       rest: {
         status: s.rest,
         zq_px: s.rest === 'filled' ? zqFill + (s.dir === 'L' ? 0.0025 : -0.0025) : null,

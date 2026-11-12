@@ -21,13 +21,39 @@ CONTRACTS_PER_UNIT = 1041.75        # Kalshi contracts per leg for one ZQ, times
 REST_IMPROVE = 0.01                 # resting order sits 1c better than the price we would cross at
 REST_MAX_DAYS = 5                   # cancel an unfilled resting order after this many trading days
 MEETINGS_AHEAD = 3                  # how many upcoming meetings to snapshot and evaluate
+STRIKE_STEP = 0.25                  # C1: Kalshi thresholds must run in unbroken steps of this size
+
+# --- Data-quality gates (v1.1). These can only stop a trade, never create one. ----------------
+SNAPSHOT_TARGET = "15:00"           # ZQ settles on 14:59-15:00 ET trades; the Kalshi snapshot aims here
+MAX_SNAPSHOT_SKEW_MIN = 10          # snapshot further than this from 15:00 ET -> record only, no trade
+TRUSTED_ZQ_SOURCES = ("cme",)       # a ZQ price from any other source -> record only, no trade
+
+# --- Official FOMC calendar (decision days), federalreserve.gov ------------------------------
+# 2027-2028 dates are the Fed's tentative schedule; each is confirmed at the meeting before it.
+# Unscheduled (emergency) meetings are not listed: add them here by hand if one is called.
+FOMC_DATES = [
+    "2025-12-10",
+    "2026-01-28", "2026-03-18", "2026-04-29", "2026-06-17",
+    "2026-07-29", "2026-09-16", "2026-10-28", "2026-12-09",
+    "2027-01-27", "2027-03-17", "2027-04-28", "2027-06-09",
+    "2027-07-28", "2027-09-15", "2027-10-27", "2027-12-08",
+    "2028-01-26",
+]
+
+# --- Days with no regular CME settlement (NYSE/CME holiday schedule). The bot skips them. ------
+MARKET_HOLIDAYS = [
+    "2026-01-01", "2026-01-19", "2026-02-16", "2026-04-03", "2026-05-25", "2026-06-19",
+    "2026-07-03", "2026-09-07", "2026-11-26", "2026-12-25",
+    "2027-01-01", "2027-01-18", "2027-02-15", "2027-03-26", "2027-05-31", "2027-06-18",
+    "2027-07-05", "2027-09-06", "2027-11-25", "2027-12-24",
+]
 
 # --- Dashboard (display only) ---------------------------------------------------------------
 START_CAPITAL = 10_000              # notional account the dashboard shows P&L against (~1 unit, see capital notes)
 INTRADAY_MARKS = True               # mark open positions on every weekday Actions run (data/intraday/)
 
 # --- Schedule (America/New_York) ------------------------------------------------------------
-SNAP_WINDOW = ("14:50", "15:45")    # Kalshi snapshot window around the 3pm ET reference time
+SNAP_WINDOW = ("14:40", "15:45")    # a run in this window takes the snapshot (waiting for 15:00 if early)
 EOD_AFTER = "17:30"                 # CME settlements and EFFR are pulled after this time
 
 # --- Data sources ---------------------------------------------------------------------------

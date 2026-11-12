@@ -1,5 +1,5 @@
 // FedStrip service worker: app shell cache-first, data network-first, offline fallback to cache.
-const VERSION = 'fedstrip-v1';
+const VERSION = 'fedstrip-v2';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png'];
 
 self.addEventListener('install', (e) => {

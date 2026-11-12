@@ -22,7 +22,7 @@ function Badge({ kind }: { kind: 'Open' | 'Settled' | 'Expired' }) {
   );
 }
 
-const FILL_TEXT: Record<FillStatus, string> = { filled: 'Filled', working: 'Working', expired: 'Expired', unfillable: 'Unfillable' };
+const FILL_TEXT: Record<FillStatus, string> = { filled: 'Filled', partial: 'Partial', working: 'Working', expired: 'Expired', unfillable: 'Unfillable' };
 
 function Money({ v, bpv }: { v: number | null; bpv: number | null }) {
   if (v == null) return <><td className="py-2 text-right text-muted">—</td><td className="py-2 text-right text-muted">—</td></>;
@@ -99,8 +99,10 @@ export function PositionCard({ p, method }: { p: Position; method: Method }) {
               <tr key={m} className={`border-t border-line ${sel ? '' : 'opacity-70'}`}>
                 <td className={`py-2 ${sel ? 'font-semibold' : ''}`}>{METHOD_LABEL[m]}</td>
                 <td className="py-2 text-muted">
-                  {FILL_TEXT[f.status]}
+                  {FILL_TEXT[f.status] ?? f.status}
+                  {f.status === 'partial' && f.qty != null ? ` ${Math.round(f.qty)}/${p.N}` : ''}
                   {m === 'rest' && f.status === 'working' && f.days != null ? ` · d${f.days}` : ''}
+                  {f.unverified ? ' · unverified ZQ' : ''}
                 </td>
                 <Money v={pl?.usd ?? null} bpv={pl?.bp ?? null} />
               </tr>

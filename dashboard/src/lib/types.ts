@@ -10,7 +10,7 @@ export const METHOD_LABEL: Record<Method, string> = {
 export const METHOD_SHORT: Record<Method, string> = { top: 'Top', walk: 'Walk', rest: 'Rest' };
 
 export type Direction = 'L' | 'H';
-export type FillStatus = 'filled' | 'working' | 'expired' | 'unfillable';
+export type FillStatus = 'filled' | 'partial' | 'working' | 'expired' | 'unfillable';
 
 export interface Leg {
   ticker: string;
@@ -25,6 +25,8 @@ export interface Leg {
 
 export interface Fill {
   status: FillStatus;
+  qty?: number; // contracts per leg actually filled (partial fills)
+  unverified?: boolean; // ZQ hedge priced from a fallback source
   zq_px: number | null;
   date: string | null;
   days?: number;
@@ -34,6 +36,7 @@ export interface Fill {
 export interface PnL {
   usd: number;
   bp: number;
+  qty?: number;
 }
 
 export interface Position {
@@ -93,6 +96,9 @@ export interface Evaluation {
   N?: number;
   zq_settle?: number;
   legs?: { ticker: string; strike: number; bid: number; ask: number }[];
+  record_only?: string[]; // data-quality gate: evaluated and logged, but no position allowed
+  trade_if_allowed?: boolean;
+  zq_source?: string | null;
   L_top?: { G: number; signal: number };
   H_top?: { G: number; signal: number };
 }

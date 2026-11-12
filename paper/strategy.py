@@ -123,6 +123,9 @@ def evaluate(today, meeting, all_meetings, ladder, zq_settle, effr_by_date, ub_b
     ladder = sorted(ladder, key=lambda x: x["strike"])
     if not ladder:
         return {**out, "eligible": False, "reason": "empty ladder"}
+    strikes = [x["strike"] for x in ladder]          # C1: the strip needs every threshold, no holes
+    if any(abs((b - a) - C.STRIKE_STEP) > 1e-6 for a, b in zip(strikes, strikes[1:])):
+        return {**out, "eligible": False, "reason": "C1: gap in ladder"}
     tops, mids, fresh = [], [], []
     for x in ladder:
         b, a_, fr = top(x["book"])
@@ -187,3 +190,29 @@ def evaluate(today, meeting, all_meetings, ladder, zq_settle, effr_by_date, ub_b
                direction=best, **res)
     out["trade"] = res[f"{best}_top"]["signal"] > 0
     return out
+
+
+# --- Data-quality gate (v1.1) ---------------------------------------------------------------
+def record_only_reasons(zq_source, snapshot_skew_min, calendar_ok):
+    """Reasons today's data is not good enough to open a position. Empty list = OK to trade.
+
+    The rules above still run on such days (so the day is recorded), but no position may open.
+    """
+    reasons = []
+    if zq_source not in C.TRUSTED_ZQ_SOURCES:
+        reasons.append(f"ZQ price from {zq_source or 'unknown source'}, not CME settlement")
+    if snapshot_skew_min is None or snapshot_skew_min > C.MAX_SNAPSHOT_SKEW_MIN:
+        skew = "unknown" if snapshot_skew_min is None else f"{snapshot_skew_min:.1f} min"
+        reasons.append(f"Kalshi snapshot {skew} from {C.SNAPSHOT_TARGET} ET (limit {C.MAX_SNAPSHOT_SKEW_MIN} min)")
+    if not calendar_ok:
+        reasons.append("Kalshi meeting dates do not match the official FOMC calendar")
+    return reasons
+
+
+def apply_gate(ev, reasons):
+    """Turn an evaluation into record-only if there are reasons. Never turns a no-trade into a trade."""
+    if reasons and ev.get("eligible"):
+        ev["record_only"] = reasons
+        ev["trade_if_allowed"] = bool(ev.get("trade"))
+        ev["trade"] = False
+    return ev
