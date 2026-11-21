@@ -1,0 +1,35 @@
+{
+ "cme": {},
+ "yahoo": {
+  "2026-11": 20,
+  "2026-12": 20,
+  "2027-01": 20,
+  "2027-02": 20,
+  "2027-03": 20,
+  "2027-04": 20,
+  "2027-05": 20,
+  "2027-06": 20
+ },
+ "effr": {
+  "nyfed_rows": 120
+ },
+ "errors": [
+  "cme 2026-11-02: <HTTPError 403: 'Forbidden'>",
+  "cme 2026-11-03: <HTTPError 403: 'Forbidden'>",
+  "cme 2026-11-04: <HTTPError 403: 'Forbidden'>",
+  "cme 2026-11-05: <HTTPError 403: 'Forbidden'>",
+  "cme 2026-11-06: <HTTPError 403: 'Forbidden'>",
+  "cme 2026-11-09: <HTTPError 403: 'Forbidden'>",
+  "cme 2026-11-10: <HTTPError 403: 'Forbidden'>",
+  "cme 2026-11-11: <HTTPError 403: 'Forbidden'>",
+  "cme 2026-11-12: <HTTPError 403: 'Forbidden'>",
+  "cme 2026-11-13: <HTTPError 403: 'Forbidden'>",
+  "cme 2026-11-16: <HTTPError 403: 'Forbidden'>",
+  "cme 2026-11-17: <HTTPError 403: 'Forbidden'>",
+  "cme 2026-11-18: <HTTPError 403: 'Forbidden'>",
+  "cme 2026-11-19: <HTTPError 403: 'Forbidden'>",
+  "cme 2026-11-20: <HTTPError 403: 'Forbidden'>",
+  "fred EFFR: TimeoutError('The read operation timed out')",
+  "fred DFEDTARU: TimeoutError('The read operation timed out')"
+ ]
+}
