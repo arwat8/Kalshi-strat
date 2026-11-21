@@ -68,4 +68,4 @@ f58b3b5c9f363dea6216adf3508189969c7401ad5166c499adfec817c0fcc37a  paper/run.py
 ```
 
 ## Deviations after data arrived
-(none yet)
+None. The replay ran once with all fingerprints matching. CME returned HTTP 403 for every date, so the pre-registered headline rule selected the proxy variant. Post-run diagnostics, labelled as such, are in RESULTS_2WK.md.

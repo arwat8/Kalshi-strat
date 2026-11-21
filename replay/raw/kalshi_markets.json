@@ -1,0 +1,551 @@
+[
+ {
+  "ticker": "KXFED-26DEC-T3.25",
+  "event_ticker": "KXFED-26DEC",
+  "floor_strike": 3.25,
+  "open_time": "2025-08-06T14:30:00Z",
+  "close_time": "2026-12-09T18:55:00Z",
+  "created_time": "2025-08-06T14:29:24.100133Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-26DEC-T4.50",
+  "event_ticker": "KXFED-26DEC",
+  "floor_strike": 4.5,
+  "open_time": "2025-08-06T14:30:00Z",
+  "close_time": "2026-12-09T18:55:00Z",
+  "created_time": "2025-08-06T14:29:24.100134Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-26DEC-T5.00",
+  "event_ticker": "KXFED-26DEC",
+  "floor_strike": 5,
+  "open_time": "2025-08-06T14:30:00Z",
+  "close_time": "2026-12-09T18:55:00Z",
+  "created_time": "2025-08-06T14:29:24.100134Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-26DEC-T3.75",
+  "event_ticker": "KXFED-26DEC",
+  "floor_strike": 3.75,
+  "open_time": "2025-08-06T14:30:00Z",
+  "close_time": "2026-12-09T18:55:00Z",
+  "created_time": "2025-08-06T14:29:24.100133Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-26DEC-T4.75",
+  "event_ticker": "KXFED-26DEC",
+  "floor_strike": 4.75,
+  "open_time": "2025-08-06T14:30:00Z",
+  "close_time": "2026-12-09T18:55:00Z",
+  "created_time": "2025-08-06T14:29:24.100134Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-26DEC-T5.25",
+  "event_ticker": "KXFED-26DEC",
+  "floor_strike": 5.25,
+  "open_time": "2025-08-06T14:30:00Z",
+  "close_time": "2026-12-09T18:55:00Z",
+  "created_time": "2025-08-06T14:29:24.100134Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-26DEC-T4.00",
+  "event_ticker": "KXFED-26DEC",
+  "floor_strike": 4,
+  "open_time": "2025-08-06T14:30:00Z",
+  "close_time": "2026-12-09T18:55:00Z",
+  "created_time": "2025-08-06T14:29:24.100133Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-26DEC-T4.25",
+  "event_ticker": "KXFED-26DEC",
+  "floor_strike": 4.25,
+  "open_time": "2025-08-06T14:30:00Z",
+  "close_time": "2026-12-09T18:55:00Z",
+  "created_time": "2025-08-06T14:29:24.100133Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-26DEC-T3.50",
+  "event_ticker": "KXFED-26DEC",
+  "floor_strike": 3.5,
+  "open_time": "2025-08-06T14:30:00Z",
+  "close_time": "2026-12-09T18:55:00Z",
+  "created_time": "2025-08-06T14:29:24.100133Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-26DEC-T2.75",
+  "event_ticker": "KXFED-26DEC",
+  "floor_strike": 2.75,
+  "open_time": "2025-08-06T14:30:00Z",
+  "close_time": "2026-12-09T18:55:00Z",
+  "created_time": "2025-08-06T14:29:24.100133Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-26DEC-T3.00",
+  "event_ticker": "KXFED-26DEC",
+  "floor_strike": 3,
+  "open_time": "2025-08-06T14:30:00Z",
+  "close_time": "2026-12-09T18:55:00Z",
+  "created_time": "2025-08-06T14:29:24.100133Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T1.25",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 1.25,
+  "open_time": "2025-10-06T14:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2025-10-02T22:01:04.808344Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T0.50",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 0.5,
+  "open_time": "2025-10-06T14:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2025-10-02T22:01:04.808344Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T2.00",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 2,
+  "open_time": "2025-10-06T14:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2025-10-02T22:01:04.808344Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T5.75",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 5.75,
+  "open_time": "2026-09-18T15:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2026-09-18T13:40:19.042242Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T5.25",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 5.25,
+  "open_time": "2026-09-18T15:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2026-09-18T13:39:38.753595Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T5.00",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 5,
+  "open_time": "2026-09-18T15:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2026-09-18T13:38:16.625928Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T5.50",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 5.5,
+  "open_time": "2026-09-18T15:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2026-09-18T13:39:56.881311Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T1.00",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 1,
+  "open_time": "2025-10-06T14:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2025-10-02T22:01:04.808344Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T6.00",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 6,
+  "open_time": "2026-09-18T15:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2026-09-18T13:40:38.66506Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T1.50",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 1.5,
+  "open_time": "2025-10-06T14:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2025-10-02T22:01:04.808344Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T4.00",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 4,
+  "open_time": "2025-10-06T14:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2025-10-02T22:01:04.808344Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T0.75",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 0.75,
+  "open_time": "2025-10-06T14:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2025-10-02T22:01:04.808344Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T4.25",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 4.25,
+  "open_time": "2025-10-06T14:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2025-10-02T22:01:04.808344Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T4.50",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 4.5,
+  "open_time": "2026-09-18T15:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2026-09-18T13:37:20.059899Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T0.00",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 0,
+  "open_time": "2025-10-06T14:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2025-10-02T22:01:04.808344Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T3.00",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 3,
+  "open_time": "2025-10-06T14:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2025-10-02T22:01:04.808344Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T2.75",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 2.75,
+  "open_time": "2025-10-06T14:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2025-10-02T22:01:04.808344Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T2.25",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 2.25,
+  "open_time": "2025-10-06T14:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2025-10-02T22:01:04.808344Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T2.50",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 2.5,
+  "open_time": "2025-10-06T14:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2025-10-02T22:01:04.808344Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T3.75",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 3.75,
+  "open_time": "2025-10-06T14:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2025-10-02T22:01:04.808344Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T3.25",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 3.25,
+  "open_time": "2025-10-06T14:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2025-10-02T22:01:04.808344Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T0.25",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 0.25,
+  "open_time": "2025-10-06T14:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2025-10-02T22:01:04.808344Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T3.50",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 3.5,
+  "open_time": "2025-10-06T14:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2025-10-02T22:01:04.808344Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T4.75",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 4.75,
+  "open_time": "2026-09-18T15:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2026-09-18T13:37:52.468231Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27JAN-T1.75",
+  "event_ticker": "KXFED-27JAN",
+  "floor_strike": 1.75,
+  "open_time": "2025-10-06T14:00:00Z",
+  "close_time": "2027-01-27T18:55:00Z",
+  "created_time": "2025-10-02T22:01:04.808344Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T2.00",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 2,
+  "open_time": "2025-10-13T14:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2025-10-06T19:21:39.208257Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T5.25",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 5.25,
+  "open_time": "2026-09-18T15:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2026-09-18T13:42:45.294511Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T2.25",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 2.25,
+  "open_time": "2025-10-13T14:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2025-10-06T19:21:39.208257Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T1.00",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 1,
+  "open_time": "2025-10-13T14:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2025-10-06T19:21:39.208257Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T6.00",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 6,
+  "open_time": "2026-09-18T15:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2026-09-18T13:43:47.039631Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T3.25",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 3.25,
+  "open_time": "2025-10-13T14:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2025-10-06T19:21:39.208257Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T5.00",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 5,
+  "open_time": "2026-09-18T15:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2026-09-18T13:42:28.840159Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T5.50",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 5.5,
+  "open_time": "2026-09-18T15:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2026-09-18T13:43:05.917466Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T5.75",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 5.75,
+  "open_time": "2026-09-18T15:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2026-09-18T13:43:26.632989Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T3.00",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 3,
+  "open_time": "2025-10-13T14:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2025-10-06T19:21:39.208257Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T4.75",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 4.75,
+  "open_time": "2026-09-18T15:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2026-09-18T13:42:09.696105Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T1.75",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 1.75,
+  "open_time": "2025-10-13T14:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2025-10-06T19:21:39.208257Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T4.50",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 4.5,
+  "open_time": "2026-09-18T15:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2026-09-18T13:41:34.096643Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T2.50",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 2.5,
+  "open_time": "2025-10-13T14:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2025-10-06T19:21:39.208257Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T0.75",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 0.75,
+  "open_time": "2025-10-13T14:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2025-10-06T19:21:39.208257Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T1.25",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 1.25,
+  "open_time": "2025-10-13T14:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2025-10-06T19:21:39.208257Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T4.25",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 4.25,
+  "open_time": "2025-10-13T14:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2025-10-06T19:21:39.208257Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T3.75",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 3.75,
+  "open_time": "2025-10-13T14:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2025-10-06T19:21:39.208257Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T4.00",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 4,
+  "open_time": "2025-10-13T14:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2025-10-06T19:21:39.208257Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T1.50",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 1.5,
+  "open_time": "2025-10-13T14:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2025-10-06T19:21:39.208257Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T3.50",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 3.5,
+  "open_time": "2025-10-13T14:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2025-10-06T19:21:39.208257Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T2.75",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 2.75,
+  "open_time": "2025-10-13T14:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2025-10-06T19:21:39.208257Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T0.25",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 0.25,
+  "open_time": "2025-10-13T14:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2025-10-06T19:21:39.208257Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T0.00",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 0,
+  "open_time": "2025-10-13T14:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2025-10-06T19:21:39.208257Z",
+  "status": "active"
+ },
+ {
+  "ticker": "KXFED-27MAR-T0.50",
+  "event_ticker": "KXFED-27MAR",
+  "floor_strike": 0.5,
+  "open_time": "2025-10-13T14:00:00Z",
+  "close_time": "2027-03-17T17:55:00Z",
+  "created_time": "2025-10-06T19:21:39.208257Z",
+  "status": "active"
+ }
+]

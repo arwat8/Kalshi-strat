@@ -1,0 +1,22 @@
+{
+ "days": [
+  "2026-11-09",
+  "2026-11-10",
+  "2026-11-11",
+  "2026-11-12",
+  "2026-11-13",
+  "2026-11-16",
+  "2026-11-17",
+  "2026-11-18",
+  "2026-11-19",
+  "2026-11-20"
+ ],
+ "zq_needed": 30,
+ "zq_cme": 0,
+ "zq_yahoo": 30,
+ "cme_vs_yahoo_pairs": 0,
+ "cme_vs_yahoo_max_abs_diff": null,
+ "effr_source": "nyfed",
+ "effr_days": 120,
+ "headline_variant": "proxy"
+}
