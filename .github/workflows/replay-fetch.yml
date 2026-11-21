@@ -1,0 +1,26 @@
+name: replay-fetch
+# One-off: fetch ZQ settlements and EFFR for the blind 2-week replay (the workspace can't reach
+# CME, Yahoo, NY Fed or FRED). Runs when replay/TRIGGER changes on the replay-2wk branch.
+on:
+  push:
+    branches: [replay-2wk]
+    paths: [replay/TRIGGER]
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python replay/fetch_external.py
+      - run: |
+          git config user.name "replay-bot"
+          git config user.email "replay-bot@users.noreply.github.com"
+          git add replay/raw
+          git commit -m "replay: external data (ZQ, EFFR) fetched $(date -u +%FT%TZ)" || echo "nothing new"
+          git pull --rebase --autostash || true
+          git push
